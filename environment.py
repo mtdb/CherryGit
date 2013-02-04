@@ -74,7 +74,9 @@ def get_staged(repo):
     return [('deleted' if diff.deleted_file else ('created' if diff.new_file else 'modified'),diff.a_blob.path if diff.a_blob else diff.b_blob.path) for diff in repo.index.diff(None, staged=True)]
 
 def get_unsync(repo):
-    data = repo.git.log("origin/master..","--pretty=format:%H||%an||%at||%s").split("\n")
+    remote_repo = 'origin' if 'origin' in [str(x) for x in repo.remotes] else str(repo.remotes[0])
+    default_remote_repo = remote_repo+'/'+str(repo.active_branch)+'..'
+    data = repo.git.log(default_remote_repo,'--pretty=format:%H||%an||%at||%s').split('\n')
     commits = []
     for commit in data:
         if commit:

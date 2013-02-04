@@ -1,0 +1,8 @@
+mergetool: meld
+repositories:
+    - name: Example Repository
+      path: /the/path/of/my/main/repository
+      default: yes
+    - name: Another Repository
+      path: /the/path/of/my/second/repository
+      default: no
