@@ -1,0 +1,30 @@
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    div#main {
+        font-family: 'Ubuntu Mono';
+        font-size: 23px;
+        color: green;
+        margin: 50px 0px;
+        text-align: center;
+        width: 100%
+    }
+    div#message {
+        background-color: #F6CECE;
+        text-align: center;
+        border: 1px solid #FE2E2E;
+        color: #FE2E2E;
+        padding: 20px;
+        width: 50%;
+        margin: 20px auto;
+        font-size: 18px;
+    }
+</style>
+<div id="main">
+    Sorry 500<br>Aparently an error occurred ☹
+    <div id="message">
+        {{exception}}
+    </div>
+</div>

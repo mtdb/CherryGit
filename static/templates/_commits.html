@@ -1,0 +1,18 @@
+{% for commit in repo.iter_commits(max_count=20, skip=skip) %}
+<li class="commit" data-hexsha="{{ commit.hexsha }}" data-context-menu="commit_menu" title="{{ commit.authored_date|diff_time() }}" data-author-name="{{ commit.author.name|smartstr() }}" data-author-email="{{ commit.author.email.lower() }}">
+    <div class="node" data-context-menu="commit_menu">
+        {{ commit|to_node|safe }}
+    </div>
+    <div class="info">
+        <div><img src="http://www.gravatar.com/avatar/{{ commit|get_email_hash() }}" alt="" data-context-menu="profile_menu"></div>
+        <div>
+            <div>
+                <span data-context-menu="profile_menu">{{ commit.author.name|smartstr() }}</span>
+                <span data-context-menu="commit_menu" title="{{ commit.authored_date|diff_time() }}">{{ commit.authored_date|diff_time_human() }}</span>
+            </div>
+            <div data-context-menu="commit_menu" title="{{ commit.authored_date|diff_time() }}">{{ commit.message|smartstr() }}</div>
+        </div>
+        <div class="tags"></div>
+    </div>
+</li>
+{% endfor %}

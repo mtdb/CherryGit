@@ -1,0 +1,202 @@
+<div id="commitbox" class="modalbox">
+    <a href="#" class="close">x</a>
+    <h2>Commit</h2>
+    <div>
+        <b>Commit message</b>
+        <textarea></textarea>
+    </div>
+    <footer>
+        <button data-action="commit">Commit</button>
+    </footer>
+</div>
+
+<div id="pullbox" class="modalbox">
+    <a href="#" class="close">x</a>
+    <h2>Pull</h2>
+    <div>
+        <span><label for="remote">From Remote</label>
+            <select id="remote">
+                {% for remote in repo.remotes %}
+                <option value="{{remote}}">{{remote}}</option>
+                {% endfor %}
+            </select><a href="#" class="small">or URL</a>
+        </span>
+        <span><label for="branch">with remote branch</label>
+            <select id="branch"></select></span>
+        <span>to local branch <b>{{repo.active_branch}}</b></span>
+    </div>
+    <div class="result">...output...</div>
+    <footer>
+        <button data-action="openMergetool">Mergetool</button>
+        <button data-action="pull">Pull</button>
+    </footer>
+</div>
+
+<div id="pushbox" class="modalbox">
+    <a href="#" class="close">x</a>
+    <h2>Push</h2>
+    <div>
+        <span>
+            <label for="remote">To Remote</label>
+            <select id="remote">
+                {% for remote in repo.remotes %}
+                <option value="{{remote}}">{{remote}}</option>
+                {% endfor %}
+            </select><a href="#" class="small">or URL</a>
+        </span>
+        <span>
+            <label for="branch">with remote branch</label>
+            <select id="branch"></select></span>
+        <span>from local branch <b>{{repo.active_branch}}</b></span>
+    </div>
+    <div class="result">...output...</div>
+    <footer>
+        <button data-action="push">Push</button>
+    </footer>
+</div>
+
+<div id="revertbox" class="modalbox" style="height:115px;">
+    <a href="#" class="close">x</a>
+    <h2>Revert</h2>
+    <p>Are you sure you want revert the changes in <em class="file green"></em>?<br><b>This action can not be undone!</b></p>
+    <footer>
+        <button data-action="revert">Yes, I am</button>
+    </footer>
+</div>
+
+<div id="profilebox" class="modalbox">
+    <a href="#" class="close">x</a>
+    <h2 class="author-name"></h2>
+    <ul>
+        <li>
+            <b>email:</b><span class="author-email"></span>
+        </li>
+        <li>
+            <b>FACEBOOK</b>
+        </li>
+        <li>
+            <b>name:</b><span class="fb-name"></span>
+        </li>
+        <li>
+            <b>gender:</b><span class="fb-gender"></span>
+        </li>
+        <li>
+            <b>facebook:</b><span class="fb-link"></span>
+        </li>
+        <li>
+            <b>locale:</b><span class="fb-locale"></span>
+        </li>
+        <li>
+            <b>timezone:</b><span class="fb-timezone"></span>
+        </li>
+        <li>
+            <b>username:</b><span class="fb-username"></span>
+        </li>
+        <li>
+            <b>works:</b><span class="fb-works"></span>
+        </li>
+        <li>
+            <b>education:</b><span class="fb-education"></span>
+        </li>
+        <li>
+            <b>STATISTICS</b>
+        </li>
+        <li>
+            <b>commits:</b><span>[commits]</span>
+        </li>
+        <li>
+            <b>last-commit:</b><span>[last-commit]</span>
+        </li>
+        <li>
+            <b>first-commit:</b><span>[first-commit]</span>
+        </li>
+    </ul>
+    <footer>
+        <button class="close">Close</button>
+    </footer>
+</div>
+
+<div id="gitignorebox" class="modalbox" style="height:135px;">
+    <a href="#" class="close">x</a>
+    <h2>Ignore File(s)</h2>
+    <p>
+        <b>Select the line to append in your .gitignore file:</b>
+    </p>
+    <div class="paths">
+        <p>
+            <input type="radio" checked name="gitignorepath" id="gitignorepath1">
+            <label for="gitignorepath1"></label>
+        </p>
+        <p>
+            <input type="radio" name="gitignorepath" id="gitignorepath2">
+            <label for="gitignorepath2"></label>
+        </p>
+        <p>
+            <input type="radio" name="gitignorepath" id="gitignorepath3">
+            <label for="gitignorepath3"></label>
+        </p>
+    </div>
+    <footer>
+        <button data-action="addtogitignore">Apply</button>
+    </footer>
+</div>
+
+<div id="newbranchbox" class="modalbox">
+    <a href="#" class="close">x</a>
+    <h2>Create Branch</h2>
+    <div>
+        <span>Name of branch&nbsp;</span>
+        <input type="text" name="branch" id="">
+    </div>
+    <div class="result">...output...</div>
+    <footer>
+        <button data-action="createbranch">Create</button>
+    </footer>
+</div>
+
+<div id="openrepobox" class="modalbox">
+    <a href="#" class="close">x</a>
+    <h2>Open Repo</h2>
+    <div>
+        <span>Name of repository&nbsp;</span>
+        <input type="text" name="branch" id="">
+    </div>
+    <div>
+        <span>Path&nbsp;</span>
+        <input type="file" name="directory" id="">
+    </div>
+    <div class="result">...output...</div>
+    <footer>
+        <button data-action="createbranch">Create</button>
+    </footer>
+</div>
+
+<div id="configbox" class="modalbox">
+    <a href="#" class="close">x</a>
+    <h2>Cherrygit Configuration</h2>
+    <section>
+        <p>
+            <label for="mergetool">mergetool:</label>
+            <input type="text" name="mergetool" value="{{config.mergetool}}">
+        </p>
+    </section>
+    <section>
+        <h3>Select the default repository:</h3>
+        <div>
+            {% for repo in config.repositories %}
+            <p>
+                <input value="{{repo.path}}" type="radio" {% if repo.active %}checked{% endif %} name="repopath" id="repopath{{ loop.index }}">
+                <label for="repopath{{ loop.index }}"><b>{{repo.name}}</b> - <em class="path">{{repo.path}}</em></label>
+            </p>
+            {% endfor %}
+            <p>
+                <input value="__none__" type="radio" name="repopath" id="repopathnone">
+                <label for="repopathnone"><b>None</b></label>
+            </p>
+        
+        </div>
+    </section>
+    <footer>
+        <button data-action="unimplemented">Save</button>
+    </footer>
+</div>

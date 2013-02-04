@@ -1,0 +1,11 @@
+GitPython==0.3.2.RC1
+Jinja2==2.6
+PyYAML==3.10
+Routes==1.13
+argparse==1.2.1
+async==0.6.1
+distribute==0.6.24
+gitdb==0.5.4
+repoze.lru==0.6
+smmap==0.8.2
+wsgiref==0.1.2

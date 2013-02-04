@@ -1,0 +1,14 @@
+mergetool: meld
+repositories:
+    - name: Playdoh
+      path: /tmp/playdoh
+      default: no
+    - name: testrepo
+      path: /home/mauricio/Escritorio/testrepo
+      default: no
+    - name: eitaliani
+      path: /home/mauricio/Dropbox/Proyectos/Zava/eitaliani
+      default: yes
+    - name: Azimut
+      path: /home/mauricio/Dropbox/Proyectos/Azimut/sifac
+      default: no

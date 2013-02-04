@@ -1,0 +1,26 @@
+<div class="window-control">
+    <h1>{{ repo.working_dir|get_foldername }} <span>{{ repo|get_username }}</span></h1>
+    <div class="controls">
+        <ul>
+            <li><button>-</button></li>
+            <li><button>&curren;</button></li>
+            <li><button data-action="exit">x</button></li>
+        </ul>
+    </div>
+</div>
+<div class="repository-info">
+    <button data-action="refresh"><img src="{{ STATIC_URL }}img/spin.svg" alt="" width="15px"></button>
+    <select id="repositories">
+        {% for repo in config.repositories %}
+        <option value="{{repo.path}}" {% if repo.active %}selected{% endif %}>{{repo.name}}</option>
+        {% endfor %}
+        <option value="__openrepo__">Open another directory...</option>
+    </select>
+    <select id="local-branch">
+        {% for branch in repo.branches %}
+        <option value="{{branch}}" {% if branch==repo.active_branch  %}selected{% endif %}>{{branch}}</option>
+        {% endfor %}
+        <option value="__newbranch__">New Local Branch...</option>
+    </select>
+    <button class="settings" data-action="configModal"><img src="{{ STATIC_URL }}img/cog.png" alt="" width="15px"></button>
+</div>

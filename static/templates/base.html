@@ -1,0 +1,38 @@
+{# load gui_helpers #}
+<!DOCTYPE html>
+<html lang="es-ES">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Mauricio Reyes">
+        <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+        <title>CherryGit</title>
+        <link rel="stylesheet/less" href="{{ STATIC_URL }}stylesheets/git.less">
+        <script type="text/javascript" src="{{ STATIC_URL }}scripts/less-1.3.0.min.js"></script>
+    </head>
+    <body>
+        <header>
+            {% include '_header.html' %}
+        </header>
+        <div class="content">
+            <div id="tree" data-list-length="20">
+                <ul>{% include '_commits.html' %}</ul>
+            </div>
+            <div id="state">
+                {% include '_status.html' %}
+            </div>
+            <div id="details">
+                {% include '_details.html' %}
+            </div>
+        </div>
+
+        <div id="boxes">
+            {% include '_modals.html' %}
+            <div id="mask"></div>
+        </div>
+        
+        {% include '_context_menu.html' %}
+
+        <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}scripts/git.js"></script>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+{% if repo.is_dirty() %}
+<h2>Unstage</h2>
+<ul>
+    {% for file in repo|get_unstaged() %}
+    <li class="file" data-hover="View" data-path="{{ file.1 }}" data-status="Unstage" data-mode="{{ file.0 }}" data-context-menu="unstage_menu">
+        {% if file.0 == 'deleted' %}<b>-</b>{% endif %}
+        {% if file.0 == 'created' %}<b>+</b>{% endif %}
+        {% if file.0 == 'modified' %}<b>e</b>{% endif %}
+        {{ file.1 }}
+    </li>
+    {% endfor %}
+</ul>
+<h2>Stage</h2>
+<ul>
+    {% for file in repo|get_staged() %}
+    <li class="file" data-hover="View" data-path="{{ file.1 }}" data-status="Stage" data-mode="{{ file.0 }}" data-context-menu="stage_menu">
+        {% if file.0 == 'deleted' %}<b>-</b>{% endif %}
+        {% if file.0 == 'created' %}<b>+</b>{% endif %}
+        {% if file.0 == 'modified' %}<b>e</b>{% endif %}
+        {{ file.1 }}
+    </li>
+    {% endfor %}
+</ul>
+{% if repo|get_staged()|len() != 0 %}
+<button class="commit" data-action="commitModal">Commit</button>
+{% else %}
+<button class="disable commit">Commit</button>
+{% endif %}
+{% else %}
+<p>Nothing to do here</p>
+{% endif %}
+<h2>Unsync</h2>
+{% if repo|get_unsync()|len() == 0 %}
+<p>You are update</p>
+{% else %}
+<ul>
+    {% for commit in repo|get_unsync() %}
+    <li class="commit" data-hexsha="{{ commit.hexsha }}" data-context-menu="commit_menu" title="{{ commit.author }}" data-hover="View"><b>º</b> {{ commit.summary }} <span class="small" data-context-menu="commit_menu">{{ commit.date|diff_time_human() }}</span></li>
+    {% endfor %}
+</ul>
+{% endif %}
+<button data-action="pullModal">Pull</button>
+{% if repo|get_unsync()|len() != 0 %}
+<button data-action="pushModal">Push</button>
+{% else %}
+<button class="disable">Push</button>
+{% endif %}
