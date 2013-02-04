@@ -32,7 +32,7 @@ Installing
 
 ##
     sudo apt-get install python-setuptools python-webkit python-cherrypy3
-    git clone gist:bla
+    git clone https://github.com/individuo7/CherryGit.git
     sudo pip install -r requirements.txt
 
 Launch
