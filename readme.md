@@ -19,6 +19,7 @@ CherryGit is a graphical user interface for git. Currently in alpha version, so 
 **TODO:**
 
 - draw graph of commits
+- improve integration with mergetool
 - view tree of a revision
 - view blame of a file
 - view the history of a file
